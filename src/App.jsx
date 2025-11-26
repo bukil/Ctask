@@ -8,7 +8,7 @@ function App() {
       <main className="shell">
         <div className="shell-inner">
           <header className="metrics-header">
-            <span className="eyebrow">Chronicle / Weekly snapshot</span>
+            <span className="eyebrow">Chronicle Design task</span>
             <h1 className="metrics-title">Key metrics at a glance</h1>
           </header>
 
