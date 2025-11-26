@@ -87,7 +87,7 @@
   backdrop-filter: blur(26px) saturate(1.6);
   -webkit-backdrop-filter: blur(26px) saturate(1.6);
   overflow: hidden;
-  min-height: 220px;
+  aspect-ratio: 1 / 1; /* ensure equal width and height */
 }
 
 .metrics-header {
@@ -179,59 +179,79 @@
 /* Metric widget content */
 
 .metric-card {
-  padding: 1.35rem 1.35rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 1.25rem;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  justify-items: center;
+  gap: 0.6rem;
 }
 
 .metric-top {
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 0.6rem;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
 }
 
 .metric-label {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   color: rgba(214, 222, 248, 0.86);
+  text-align: center;
 }
 
 .metric-tag {
-  padding: 0.18rem 0.55rem;
+  padding: 0.14rem 0.5rem;
   border-radius: 999px;
   border: 0.5px solid rgba(220, 231, 255, 0.4);
   background: rgba(6, 16, 40, 0.85);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   color: rgba(226, 235, 255, 0.96);
 }
 
 .metric-main {
+  width: 100%;
   display: flex;
   align-items: baseline;
-  gap: 0.6rem;
-  margin-bottom: 0.45rem;
+  justify-content: flex-start; /* align left */
+  gap: 0.5rem;
 }
 
 .metric-value {
-  font-size: 1.9rem;
-  font-weight: 580;
-  letter-spacing: 0.03em;
+  font-size: 1.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   color: rgba(245, 248, 255, 0.98);
+  text-align: left; /* align left */
 }
 
 .metric-change {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
-  padding: 0.16rem 0.55rem;
-  border-radius: 999px;
-  border: 0.5px solid rgba(223, 237, 255, 0.45);
-  background: rgba(5, 16, 32, 0.9);
+  padding: 0; /* remove pill padding */
+  border: none; /* remove pill border */
+  background: transparent; /* remove pill background */
+  border-radius: 0; /* remove pill rounding */
+}
+
+/* Solid up arrow for incremental positive change */
+.metric-change.positive::before {
+  content: '';
+  display: inline-block;
+  width: 12px; /* base length */
+  height: calc(12px * 0.866); /* equilateral height = base * sqrt(3)/2 ≈ 0.866 */
+  background: currentColor; /* uses the positive text color */
+  clip-path: polygon(50% 0, 0 100%, 100% 100%); /* sharp equilateral up triangle */
+  margin-right: 6px;
+  line-height: 1;
+  transform: translateY(1px); /* optical baseline alignment tweak */
 }
 
 .metric-change.positive {
@@ -243,24 +263,24 @@
 }
 
 .metric-meta {
-  font-size: 0.8rem;
-  line-height: 1.5;
+  font-size: 0.78rem;
+  line-height: 1.2; /* tighter for baseline alignment */
   color: rgba(204, 214, 235, 0.88);
+  text-align: left;
 }
 
 .metric-meta-row {
+  width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* align text baseline with graph base */
   justify-content: space-between;
-  gap: 1rem;
-  margin-top: 0.25rem;
+  gap: 0.75rem;
 }
 
 .metric-sparkline {
   flex-shrink: 0;
   width: 72px;
   height: 24px;
-  position: relative;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
