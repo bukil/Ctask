@@ -6,7 +6,4 @@ export default defineConfig({
   // Base path for GitHub Pages. Update if your repo name changes.
   base: '/Ctask/',
   plugins: [react()],
-  build: {
-    outDir: 'docs'
-  }
 })
