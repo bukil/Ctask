@@ -150,7 +150,7 @@ function App() {
       <main className="shell">
         <div className="shell-inner">
           <header className="metrics-header">
-            <span className="eyebrow">Chronicle Design task</span>
+            <span className="eyebrow">Design task</span>
             <h1 className="metrics-title">Key metrics at a glance</h1>
           </header>
 
